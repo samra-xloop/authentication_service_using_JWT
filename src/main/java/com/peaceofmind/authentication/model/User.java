@@ -34,6 +34,7 @@ import lombok.Setter;
 @Table(name="users")
 public class User {
     // changing to new branch
+    //changin into new branch
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
