@@ -5,39 +5,39 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.peaceofmind.authentication.controller.utility_classes.RolesEnum;
 import com.peaceofmind.authentication.model.Role;
 import com.peaceofmind.authentication.repository.IRoleRepo;
+import com.peaceofmind.authentication.utility_classes.RolesEnum;
 
 @SpringBootApplication
-public class AuthenticationApplication implements CommandLineRunner{
+public class AuthenticationApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AuthenticationApplication.class, args);
 	}
 
-	private final IRoleRepo roleRepo;
+	// private final IRoleRepo roleRepo;
 
-    @Autowired
-    public AuthenticationApplication(IRoleRepo roleRepo) {
-        this.roleRepo = roleRepo;
-    }
+    // @Autowired
+    // public AuthenticationApplication(IRoleRepo roleRepo) {
+    //     this.roleRepo = roleRepo;
+    // }
 
-	@Override
-	public void run(String... args) throws Exception {
+	// @Override
+	// public void run(String... args) throws Exception {
 
-		// Create three initial roles and save them to the database
-        Role adminRole = new Role();
-        adminRole.setRole(RolesEnum.ADMIN);
-        roleRepo.save(adminRole);
+	// 	// Create three initial roles and save them to the database
+    //     Role adminRole = new Role();
+    //     adminRole.setRole(RolesEnum.ADMIN);
+    //     roleRepo.save(adminRole);
 
-        Role patientRole = new Role();
-        patientRole.setRole(RolesEnum.PATIENT);
-        roleRepo.save(patientRole);
+    //     Role patientRole = new Role();
+    //     patientRole.setRole(RolesEnum.PATIENT);
+    //     roleRepo.save(patientRole);
 
-        Role counselorRole = new Role();
-        counselorRole.setRole(RolesEnum.COUNSELOR);
-        roleRepo.save(counselorRole);
-	}
+    //     Role counselorRole = new Role();
+    //     counselorRole.setRole(RolesEnum.COUNSELOR);
+    //     roleRepo.save(counselorRole);
+	// }
 
 }

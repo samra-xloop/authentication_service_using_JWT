@@ -14,48 +14,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.peaceofmind.authentication.controller.utility_classes.RolesEnum;
 import com.peaceofmind.authentication.model.Role;
 import com.peaceofmind.authentication.model.User;
 import com.peaceofmind.authentication.model.UserRoles;
 import com.peaceofmind.authentication.repository.IRoleRepo;
 import com.peaceofmind.authentication.service.IUserService;
+import com.peaceofmind.authentication.utility_classes.RolesEnum;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     private final IUserService userService;
-    private final IRoleRepo roleRepo;
 
     @Autowired
-    public UserController(IUserService userService, IRoleRepo roleRepo) {
+    public UserController(IUserService userService) {
         this.userService = userService;
-        this.roleRepo = roleRepo;
+    }
+
+    @GetMapping
+    public ResponseEntity<String> sayHello() {
+        return ResponseEntity.ok("Hello from secured endpoint");
     }
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
-
-        Set<UserRoles> userRoles=new HashSet<>();
-        // Create a new role based on the user's role field
-        for ( RolesEnum role: user.getRoles()){
-            Role existingrole = roleRepo.findByRole(role);
-            UserRoles userRole= new UserRoles();
-            userRole.setRole(existingrole);
-            userRole.setUser(user);
-
-            userRoles.add(userRole);
-
+        User createdUser = userService.createUser(user);
+        if (createdUser != null) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
         }
-
-        
-
-        // Set the userRoles list in the user object
-        user.setUserRoles(userRoles);
-
-        User createdUser = userService.creatUser(user, userRoles);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
     @GetMapping("/{id}")
@@ -66,6 +54,5 @@ public class UserController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    
 
 }

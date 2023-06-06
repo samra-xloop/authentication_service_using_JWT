@@ -1,4 +1,4 @@
-package com.peaceofmind.authentication.controller.utility_classes;
+package com.peaceofmind.authentication.utility_classes;
 
 public enum RolesEnum {
     PATIENT,

@@ -5,7 +5,7 @@ import java.util.Set;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import com.peaceofmind.authentication.controller.utility_classes.RolesEnum;
+import com.peaceofmind.authentication.utility_classes.RolesEnum;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

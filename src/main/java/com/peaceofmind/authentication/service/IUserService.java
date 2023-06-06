@@ -9,6 +9,6 @@ import com.peaceofmind.authentication.model.UserRoles;
 public interface IUserService {
 
     //creating user
-    User creatUser(User user, Set<UserRoles> userRoles);
+    User createUser(User user);
     Optional<User> getUser(Long id);
 }
