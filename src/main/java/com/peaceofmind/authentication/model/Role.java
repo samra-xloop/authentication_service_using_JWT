@@ -3,7 +3,6 @@ package com.peaceofmind.authentication.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.peaceofmind.authentication.controller.utility_classes.RolesEnum;
 

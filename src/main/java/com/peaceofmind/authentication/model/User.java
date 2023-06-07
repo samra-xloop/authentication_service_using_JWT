@@ -4,10 +4,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.peaceofmind.authentication.controller.utility_classes.RolesEnum;
+import com.peaceofmind.authentication.forgtopassword.ForgotPasswordRequest;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -56,4 +56,10 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     @JsonIgnore
     private Set<UserRoles> userRoles=new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    @JsonIgnore
+    private List<ForgotPasswordRequest> forgotPasswordRequest;
+
+   
 }
