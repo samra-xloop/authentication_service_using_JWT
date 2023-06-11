@@ -33,11 +33,6 @@ import lombok.Setter;
 @Entity
 @Table(name="users")
 public class User {
-    // changing to new branch
-    //changin into new branch
-    //checking 
-    //lsdjflasdjf
-    //checking again 
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
